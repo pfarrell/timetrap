@@ -50,6 +50,14 @@ describe DEQueue do
 
     it "keeps things FIFO order" do
     end
+  end
 
+  context "#window" do
+    it "returns windowed counts" do
+      dequeue.push
+      dequeue.push
+      expect(dequeue.window(-1)).to eq(0)
+      expect(dequeue.window(25)).to eq(2)
+    end
   end
 end

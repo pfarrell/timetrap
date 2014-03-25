@@ -25,6 +25,17 @@ class DEQueue
     return @count
   end
 
+  def window(length_sec)
+    t = Time.now.to_i
+    cnt = 0
+    node = @head
+    while (!node.nil? && t - node.genesis <= length_sec)
+      cnt += 1
+      node = node.next
+    end
+    return cnt
+  end
+
   private
   def increment
     @count += 1  
