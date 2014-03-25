@@ -22,6 +22,10 @@ class TimeTrap
     @tt.delete_if(&block)
   end
 
+  def sort_by(&block)
+    @tt.sort_by(&block)
+  end
+
   def has_key?(key)
     return @tt.has_key?(key)
   end

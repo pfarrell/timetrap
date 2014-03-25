@@ -53,4 +53,15 @@ describe TimeTrap do
     end
   end
     
+  context "#sort_by" do
+    it "allows access to keys sorted by output of block code" do
+      (0..0).each {|i| ttrap.add("1")}
+      (0..1).each {|i| ttrap.add("2")}
+      (0..2).each {|i| ttrap.add("3")}
+      arr = ttrap.sort_by{|k,v| -v.count}
+      expect(arr[0][0]).to eq("3")
+      expect(arr[1][0]).to eq("2")
+      expect(arr[2][0]).to eq("1")
+    end
+  end
 end
