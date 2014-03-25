@@ -2,9 +2,6 @@ require 'spec_helper'
 
 
 describe Deque do
-  it { should respond_to :count }
-  it { should respond_to :head }
-  it { should respond_to :tail }
 
   let(:deque) { Deque.new }
   context "#initialize" do
@@ -49,6 +46,22 @@ describe Deque do
     end
 
     it "keeps things FIFO order" do
+    end
+  end
+
+  context "#first" do
+    it "lets you peek at the first element" do
+      (1..3).each {|i| deque.push }
+      node = deque.push
+      expect(deque.first).to eq(node)
+    end
+  end
+
+  context "#last" do
+    it "lets you peek at the last element" do
+      node = deque.push
+      (1..3).each {|i| deque.push }
+      expect(deque.last).to eq(node)
     end
   end
 

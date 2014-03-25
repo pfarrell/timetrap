@@ -1,8 +1,15 @@
 class Deque
-  attr :head, :tail
 
   def initialize
     @count= 0
+  end
+
+  def first
+    return @head
+  end
+
+  def last
+    return @tail
   end
 
   def push
