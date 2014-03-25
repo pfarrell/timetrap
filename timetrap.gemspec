@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Timetrap::VERSION
   spec.authors       = ["Pat Farrell"]
   spec.email         = ["pfarrell@ulive.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{"exposes a data structure suitable for capturing and inspecting moving windows of data"}
+  spec.description   = %q{"timetrap is a work in progress to create a simple data strucutre that allows for windowed inspection of counts added to a hash"}
   spec.homepage      = ""
   spec.license       = "MIT"
 
