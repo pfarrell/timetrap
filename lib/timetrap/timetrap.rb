@@ -6,7 +6,7 @@ class TimeTrap
   end
 
   def add(value)
-    @tt[value] ||= DEQueue.new
+    @tt[value] ||= Deque.new
     return @tt[value].push
   end
 

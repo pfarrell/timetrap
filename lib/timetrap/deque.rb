@@ -1,4 +1,4 @@
-class DEQueue
+class Deque
   attr :head, :tail
 
   def initialize

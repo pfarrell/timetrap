@@ -1,7 +1,7 @@
 require "timetrap/timetrap"
 require "timetrap/version"
 require "timetrap/node"
-require "timetrap/dequeue"
+require "timetrap/deque"
 
 
 module Timetrap
