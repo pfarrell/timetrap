@@ -73,6 +73,16 @@ describe TimeTrap do
     end
   end
 
+  context "#top_x" do
+    it "gives you the top values sorted by code block" do
+      (0..0).each {|i| ttrap.add("1")}
+      (0..1).each {|i| ttrap.add("2")}
+      (0..2).each {|i| ttrap.add("3")}
+      arr = ttrap.top_x(1)
+      expect(arr).to match_array(["3"]) 
+    end
+  end
+
   context "#window" do
     it "allows retrieves of key counts over a window of time" do
       t = Time.now.to_i
