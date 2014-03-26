@@ -7,7 +7,7 @@ as they are created (eg. tweets, exceptions in a log file, or :Q
 
 Add this line to your application's Gemfile:
 
-    gem 'timetrap'
+    gem 'time_trap'
 
 And then execute:
 
@@ -15,9 +15,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install timetrap
+    $ gem install time_trap
 
 ## Usage
+
+    tt = TimeTrap.new
+    tt.add("benedict")
+    tt.add("cumberbatch")
+
 
 ## Contributing
 
