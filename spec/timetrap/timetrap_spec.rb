@@ -6,14 +6,16 @@ describe TimeTrap do
   context "#add" do
     it "allows values to be added" do
       ttrap.add("test_1")
-      expect(ttrap.count("test_1")).to_not be_nil
+      expect(ttrap.count).to eq(1)
     end
   end
 
   context "#count" do
     it "keeps count of objects added" do
-      ttrap.add("test_1")
-      expect(ttrap.count("test_1")).to eq(1)
+      time = ttrap.add("test_1")
+      expect(ttrap.count).to eq(1)
+      expect(ttrap.get("test_1").first).to eq(time)
+      expect(ttrap.get("test_1").last).to eq(time)
     end
   end
 

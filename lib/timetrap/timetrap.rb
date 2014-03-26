@@ -10,6 +10,10 @@ class TimeTrap
     return @tt[value].push
   end
 
+  def get(value)
+    return @tt[value]
+  end
+
   def keys
     return @tt.keys
   end
@@ -30,8 +34,8 @@ class TimeTrap
     return @tt.has_key?(key)
   end
 
-  def count(value, window_sec=3600)
-    return @tt[value].count
+  def count
+    return @tt.count
   end
 
 end
