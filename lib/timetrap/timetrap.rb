@@ -5,13 +5,13 @@ class TimeTrap
     @tt = {}
   end
 
-  def add(value)
+  def add(value, time=Time.now.to_i)
     @tt[value] ||= Deque.new
-    return @tt[value].push
+    return @tt[value].push(time)
   end
 
   def get(value)
-    return @tt[value]
+    return @tt[value].queue
   end
 
   def keys
@@ -38,4 +38,9 @@ class TimeTrap
     return @tt.count
   end
 
+  def window(start_sec, end_sec) 
+    ret = {}
+    @tt.each {|k,v| ret[k] = v.window(start_sec, end_sec).count if v.window(start_sec, end_sec).count > 0}
+    return ret
+  end
 end

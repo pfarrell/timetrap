@@ -67,11 +67,12 @@ describe Deque do
 
   context "#window" do
     it "returns windowed counts" do
+      t = Time.now.to_i
       arr = []
-      arr << deque.push
-      arr << deque.push
-      expect(deque.window(-1)).to eq([])
-      expect(deque.window(25)).to match_array(arr)
+      arr << deque.push(t-1)
+      arr << deque.push(t)
+      expect(deque.window(t - 120, t - 60 )).to eq([])
+      expect(deque.window(t - 60, t)).to match_array(arr)
     end
   end
 end

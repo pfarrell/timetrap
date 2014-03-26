@@ -8,6 +8,12 @@ describe TimeTrap do
       ttrap.add("test_1")
       expect(ttrap.count).to eq(1)
     end
+
+    it "allows values to be added with a timestamp" do
+      t = Time.now.to_i - 1000
+      ttrap.add("test_1", t)
+      expect(ttrap.get("test_1")).to match_array([t])
+    end
   end
 
   context "#count" do
@@ -64,6 +70,20 @@ describe TimeTrap do
       expect(arr[0][0]).to eq("3")
       expect(arr[1][0]).to eq("2")
       expect(arr[2][0]).to eq("1")
+    end
+  end
+
+  context "#window" do
+    it "allows retrieves of key counts over a window of time" do
+      t = Time.now.to_i
+      (0..9).each {|i| ttrap.add(i)}
+      expect(ttrap.window(t - 60, t).size).to eq(10)
+    end
+
+    it "allows retrieves of key counts ignoring expired ones" do
+      t = Time.now.to_i
+      (0..9).each{|i| ttrap.add(i, t - 61)}
+      expect(ttrap.window(t - 60, t).size).to eq(0)
     end
   end
 end

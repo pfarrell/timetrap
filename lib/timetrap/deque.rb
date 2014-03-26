@@ -1,4 +1,5 @@
 class Deque
+  attr_accessor :queue
 
   def initialize
     @queue = []
@@ -25,8 +26,8 @@ class Deque
     return @queue.size
   end
 
-  def window(window_length, start_time=Time.now.to_i)
-    ret = @queue.select {|data_time| start_time - data_time >= 0 && start_time - data_time <= window_length }
+  def window(start_time, end_time)
+    ret = @queue.select {|data_time| data_time >= start_time && data_time <= end_time }
     return ret
   end
 
