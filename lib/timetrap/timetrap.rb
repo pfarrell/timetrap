@@ -30,10 +30,15 @@ class TimeTrap
     @tt.sort_by(&block)
   end
 
-  def top_x(rank) 
+  def top(rank) 
     ret = @tt.sort_by {|k,v| -v.count}.map{|k,v| k}
     return ret[0..rank - 1]
   end
+
+  def last(secs)
+    t = Time.now.to_i
+    return window(t - secs, t)
+  end 
 
   def has_key?(key)
     return @tt.has_key?(key)

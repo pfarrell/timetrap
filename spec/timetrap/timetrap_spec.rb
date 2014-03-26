@@ -73,12 +73,12 @@ describe TimeTrap do
     end
   end
 
-  context "#top_x" do
+  context "#top" do
     it "gives you the top values sorted by code block" do
       (0..0).each {|i| ttrap.add("1")}
       (0..1).each {|i| ttrap.add("2")}
       (0..2).each {|i| ttrap.add("3")}
-      arr = ttrap.top_x(1)
+      arr = ttrap.top(1)
       expect(arr).to match_array(["3"]) 
     end
   end
@@ -94,6 +94,29 @@ describe TimeTrap do
       t = Time.now.to_i
       (0..9).each{|i| ttrap.add(i, t - 61)}
       expect(ttrap.window(t - 60, t).size).to eq(0)
+    end
+  end
+
+  context "#last" do
+    it "gives last day's worth of data" do
+      t = Time.now.to_i
+      (0..9).each{|i| ttrap.add(i, t - 60*60*24 - 1)}
+      (10..19).each{|i| ttrap.add(i, t) }
+      expect(ttrap.last(60*60*24).keys).to match_array((10..19).to_a)
+    end
+
+    it "gives last hour's worth of data" do
+      t = Time.now.to_i
+      (0..9).each{|i| ttrap.add(i, t - 60*24 - 1)}
+      (10..19).each{|i| ttrap.add(i, t) }
+      expect(ttrap.last(60*24).keys).to match_array((10..19).to_a)
+    end
+
+    it "gives last minute's worth of data" do
+      t = Time.now.to_i
+      (0..9).each{|i| ttrap.add(i, t - 60 - 1)}
+      (10..19).each{|i| ttrap.add(i, t) }
+      expect(ttrap.last(60).keys).to match_array((10..19).to_a)
     end
   end
 end
