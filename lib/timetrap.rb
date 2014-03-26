@@ -1,6 +1,5 @@
 require "timetrap/timetrap"
 require "timetrap/version"
-require "timetrap/node"
 require "timetrap/deque"
 
 

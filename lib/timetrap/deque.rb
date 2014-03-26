@@ -1,55 +1,34 @@
 class Deque
 
   def initialize
-    @count= 0
+    @queue = []
   end
 
   def first
-    return @head
+    return @queue.last
   end
 
   def last
-    return @tail
+    return @queue.first
   end
 
-  def push
-    node = Node.new
-    @head.prepend(node) unless @head.nil?
-    @head = node
-    @tail ||= node 
-    increment
-    return node
+  def push(time=Time.now.to_i)
+    @queue << time
+    return time
   end
 
   def pop
-    return nil if count== 0
-    ret = @tail
-    @tail = @tail.prev
-    decrement
+    return @queue.shift
   end
 
   def count
-    return @count
+    return @queue.size
   end
 
-  def window(length_sec)
-    t = Time.now.to_i
-    cnt = 0
-    node = @head
-    while (!node.nil? && t - node.genesis <= length_sec)
-      cnt += 1
-      node = node.next
-    end
-    return cnt
+  def window(window_length, start_time=Time.now.to_i)
+    ret = @queue.select {|data_time| start_time - data_time >= 0 && start_time - data_time <= window_length }
+    return ret
   end
 
-  private
-  def increment
-    @count += 1  
-  end
-
-  def decrement
-    @count -= 1
-  end
 end
 

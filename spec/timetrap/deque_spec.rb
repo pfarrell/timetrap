@@ -52,25 +52,27 @@ describe Deque do
   context "#first" do
     it "lets you peek at the first element" do
       (1..3).each {|i| deque.push }
-      node = deque.push
-      expect(deque.first).to eq(node)
+      deque.push(12345)
+      expect(deque.first).to eq(12345)
     end
   end
 
   context "#last" do
     it "lets you peek at the last element" do
-      node = deque.push
+      deque.push(12345)
       (1..3).each {|i| deque.push }
-      expect(deque.last).to eq(node)
+      expect(deque.last).to eq(12345)
     end
   end
 
   context "#window" do
     it "returns windowed counts" do
-      deque.push
-      deque.push
-      expect(deque.window(-1)).to eq(0)
-      expect(deque.window(25)).to eq(2)
+      arr = []
+      arr << deque.push
+      arr << deque.push
+      byebug
+      expect(deque.window(-1)).to eq([])
+      expect(deque.window(25)).to match_array(arr)
     end
   end
 end
