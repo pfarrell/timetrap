@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "time_trap"
   spec.version       = Timetrap::VERSION
   spec.authors       = ["Pat Farrell"]
-  spec.email         = ["pfarrell@ulive.com"]
+  spec.email         = ["mr.patfarrell@gmail.com"]
   spec.summary       = %q{"exposes a data structure suitable for capturing and inspecting moving windows of data"}
   spec.description   = %q{"timetrap is a work in progress to create a simple data strucutre that allows for windowed inspection of counts added to a hash"}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/pfarrell/timetrap"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
