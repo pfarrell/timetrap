@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'timetrap/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "timetrap"
+  spec.name          = "time_trap"
   spec.version       = Timetrap::VERSION
   spec.authors       = ["Pat Farrell"]
   spec.email         = ["pfarrell@ulive.com"]
