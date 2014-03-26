@@ -70,7 +70,6 @@ describe Deque do
       arr = []
       arr << deque.push
       arr << deque.push
-      byebug
       expect(deque.window(-1)).to eq([])
       expect(deque.window(25)).to match_array(arr)
     end
