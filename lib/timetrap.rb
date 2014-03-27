@@ -39,7 +39,8 @@ class TimeTrap
   def delete_if(&block)
     @tt.delete_if(&block)
   end
-
+  
+  # @return [Array] of values sorted by argued block code
   def sort_by(&block)
     @tt.sort_by(&block)
   end
@@ -59,14 +60,20 @@ class TimeTrap
     return window(t - secs, t)
   end 
 
+  # @param [Object] key key to look up in TimeTrap
+  # @return [bool] obvious??
   def has_key?(key)
     return @tt.has_key?(key)
   end
 
+  # @return count of distinct keys which have been added
   def count
     return @tt.count
   end
 
+  # @param [FixNum] start_sec beginning on time frame
+  # @param [FixNum] end_sec end of time frame
+  # @return [Hash] key = value added to TimeTrap, value = count of instances in the window
   def window(start_sec, end_sec) 
     ret = {}
     @tt.each {|k,v| ret[k] = v.window(start_sec, end_sec).count if v.window(start_sec, end_sec).count > 0}
