@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "time_trap"
-  spec.version       = "0.0.3"
+  spec.version       = "0.0.4"
   spec.authors       = ["Pat Farrell"]
   spec.email         = ["mr.patfarrell@gmail.com"]
   spec.summary       = %q{"exposes a data structure suitable for capturing and inspecting moving windows of data"}
@@ -19,10 +19,10 @@ Gem::Specification.new do |spec|
 
 
   spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "yard"
-  spec.add_development_dependency "byebug"
-  spec.add_development_dependency "markdown"
+  spec.add_development_dependency "rake", "~> 10.1"
+  spec.add_development_dependency "rspec", "~> 3.14"
+  spec.add_development_dependency "simplecov", "~> 0.8"
+  spec.add_development_dependency "yard", "~> 0.8"
+  spec.add_development_dependency "byebug", "~> 2.7"
+  spec.add_development_dependency "markdown", "~> 1.1"
 end
