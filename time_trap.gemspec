@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "time_trap"
-  spec.version       = "0.0.4"
+  spec.version       = "0.0.5"
   spec.authors       = ["Pat Farrell"]
   spec.email         = ["mr.patfarrell@gmail.com"]
   spec.summary       = %q{"exposes a data structure suitable for capturing and inspecting moving windows of data"}
