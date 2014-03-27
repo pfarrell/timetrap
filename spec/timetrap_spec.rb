@@ -16,6 +16,18 @@ describe TimeTrap do
     end
   end
 
+  context "#get" do
+    it "allows retrieval of values" do
+      t = Time.now.to_i
+      ttrap.add("test_1", t)
+      expect(ttrap.get("test_1")).to match_array([t])
+    end
+
+    it "returns nil for keys that haven't been added" do
+      expect(ttrap.get("test_1")).to be_nil
+    end
+  end
+
   context "#count" do
     it "keeps count of objects added" do
       time = ttrap.add("test_1")

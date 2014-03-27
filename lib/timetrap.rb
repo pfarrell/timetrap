@@ -20,7 +20,8 @@ class TimeTrap
   # @param [Object] value key to retrieve. 
   # @return [Array] array of time instances the value was added
   def get(value)
-    return @tt[value].queue
+    ret = @tt[value].nil? ? nil : @tt[value].queue
+    return ret
   end
 
   # @return [Array] array of values that have been added
