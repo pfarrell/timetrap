@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'timetrap/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "time_trap"
-  spec.version       = Timetrap::VERSION
+  spec.version       = "0.0.3"
   spec.authors       = ["Pat Farrell"]
   spec.email         = ["mr.patfarrell@gmail.com"]
   spec.summary       = %q{"exposes a data structure suitable for capturing and inspecting moving windows of data"}
@@ -25,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "yard"
   spec.add_development_dependency "byebug"
+  spec.add_development_dependency "markdown"
 end
