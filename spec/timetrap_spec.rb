@@ -5,7 +5,9 @@ describe TimeTrap do
 
   context "#add" do
     it "returns the time_added in seconds since epoch" do
+      t = Time.now.to_i
       expect(ttrap.add("test_1")).to be_a(Fixnum) 
+      expect(ttrap.add("test_1")).to eq(t)
     end
     
     it "allows values to be added" do
@@ -16,15 +18,20 @@ describe TimeTrap do
     it "allows values to be added with a timestamp" do
       t = Time.now.to_i - 1000
       ttrap.add("test_1", t)
-      expect(ttrap.get("test_1")).to match_array([t])
+      expect(ttrap.get("test_1")["test_1"]).to match_array([t])
     end
   end
 
   context "#get" do
+    it "returns a hash" do
+      ttrap.add("test_1")
+      expect(ttrap.get("test_1")).to be_a(Hash)
+    end
+
     it "allows retrieval of values" do
       t = Time.now.to_i
       ttrap.add("test_1", t)
-      expect(ttrap.get("test_1")).to match_array([t])
+      expect(ttrap.get("test_1")["test_1"]).to match_array([t])
     end
                                       
     it "returns nil for keys that haven't been added" do
@@ -36,8 +43,8 @@ describe TimeTrap do
     it "keeps count of objects added" do
       time = ttrap.add("test_1")
       expect(ttrap.count).to eq(1)
-      expect(ttrap.get("test_1").first).to eq(time)
-      expect(ttrap.get("test_1").last).to eq(time)
+      expect(ttrap.get("test_1")["test_1"].first).to eq(time)
+      expect(ttrap.get("test_1")["test_1"].last).to eq(time)
     end
   end
 

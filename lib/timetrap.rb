@@ -18,9 +18,9 @@ class TimeTrap
   end
 
   # @param [Object] value key to retrieve. 
-  # @return [Array] array of time instances the value was added
+  # @return [Hash] key = value, value = array of time entries.  nil if missing
   def get(value)
-    ret = @tt[value].nil? ? nil : @tt[value].queue
+    ret = @tt[value].nil? ? nil : {value => @tt[value].queue}
     return ret
   end
 
