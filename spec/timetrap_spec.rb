@@ -140,16 +140,22 @@ describe TimeTrap do
   end
 
   context "#window" do
+    it "returns a TimeTrap" do
+      t = Time.now.to_i
+      (0..9).each {|i| ttrap.add(i)}
+      expect(ttrap.window(t - 60, t)).to be_a(TimeTrap)
+    end
+
     it "allows retrieves of key counts over a window of time" do
       t = Time.now.to_i
       (0..9).each {|i| ttrap.add(i)}
-      expect(ttrap.window(t - 60, t).size).to eq(10)
+      expect(ttrap.window(t - 60, t).count).to eq(10)
     end
 
     it "allows retrieves of key counts ignoring expired ones" do
       t = Time.now.to_i
       (0..9).each{|i| ttrap.add(i, t - 61)}
-      expect(ttrap.window(t - 60, t).size).to eq(0)
+      expect(ttrap.window(t - 60, t).count).to eq(0)
     end
   end
 

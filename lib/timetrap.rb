@@ -80,8 +80,8 @@ class TimeTrap
   # @param [FixNum] end_sec end of time frame
   # @return [Hash] key = value added to TimeTrap, value = count of instances in the window
   def window(start_sec, end_sec) 
-    ret = {}
-    @tt.each {|k,v| ret[k] = v.window(start_sec, end_sec).count if v.window(start_sec, end_sec).count > 0}
+    ret = TimeTrap.new
+    @tt.each {|k,v| ret.set(k, v.window(start_sec, end_sec)) if v.window(start_sec, end_sec).count > 0}
     return ret
   end
 
