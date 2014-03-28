@@ -160,6 +160,11 @@ describe TimeTrap do
   end
 
   context "#last" do
+    it "returns a TimeTrap" do
+      ttrap.add("test_1")
+      expect(ttrap.last(60)).to be_a(TimeTrap)
+    end
+
     it "gives last day's worth of data" do
       t = Time.now.to_i
       (0..9).each{|i| ttrap.add(i, t - 60*60*24 - 1)}
