@@ -4,6 +4,10 @@ describe TimeTrap do
   let(:ttrap) { TimeTrap.new }
 
   context "#add" do
+    it "returns the time_added in seconds since epoch" do
+      expect(ttrap.add("test_1")).to be_a(Fixnum) 
+    end
+    
     it "allows values to be added" do
       ttrap.add("test_1")
       expect(ttrap.count).to eq(1)
@@ -22,7 +26,7 @@ describe TimeTrap do
       ttrap.add("test_1", t)
       expect(ttrap.get("test_1")).to match_array([t])
     end
-
+                                      
     it "returns nil for keys that haven't been added" do
       expect(ttrap.get("test_1")).to be_nil
     end
