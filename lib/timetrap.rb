@@ -45,11 +45,16 @@ class TimeTrap
     @tt.sort_by(&block)
   end
 
-  # @param [Fixnum] rank number of entries to return
-  # @return [Array] array of keys sorted by number of instances
+  # @param [Fixnum] number of entries to return
+  # @return [TimeTrap] TimeTrap consting of top values
   def top(rank) 
-    ret = @tt.sort_by {|k,v| -v.count}.map{|k,v| k}
-    return ret[0..rank - 1]
+    ret = TimeTrap.new
+    @tt.sort_by {|k,v| -v.count}.map{|k,v| 
+      ret.set(k, v)
+      rank -= 1
+      break if rank <= 0
+    }
+    return ret
   end
 
   # @param [Fixnum] secs number of seconds before current time for window
@@ -78,6 +83,13 @@ class TimeTrap
     ret = {}
     @tt.each {|k,v| ret[k] = v.window(start_sec, end_sec).count if v.window(start_sec, end_sec).count > 0}
     return ret
+  end
+
+  # allows direct set access to internal hash
+  # @param [Object] key value being tracked
+  # 
+  def set(key, value)
+    @tt[key] = value
   end
 end
 

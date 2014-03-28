@@ -40,6 +40,11 @@ describe TimeTrap do
   end
 
   context "#count" do
+    it "returns a Fixnum" do
+      ttrap.add("test_1")
+      expect(ttrap.count).to be_a(Fixnum)
+    end
+
     it "keeps count of objects added" do
       time = ttrap.add("test_1")
       expect(ttrap.count).to eq(1)
@@ -49,6 +54,12 @@ describe TimeTrap do
   end
 
   context "#has_key?" do
+    it "returns a bool" do
+      ttrap.add("test_1")
+      expect(ttrap.has_key?("test_1")).to be_a(TrueClass)
+      expect(ttrap.has_key?("test_2")).to be_a(FalseClass)
+    end
+    
     it "checks on added keys" do
       ttrap.add("test_1")
       expect(ttrap.has_key?("test_1")).to eq(true)
@@ -60,6 +71,11 @@ describe TimeTrap do
   end
 
   context "#keys" do
+    it "returns an array" do
+      ttrap.add("test_1")
+      expect(ttrap.keys).to be_an(Array)
+    end
+
     it "returns array of added keys" do
       ttrap.add("test_1")
       ttrap.add("test_2")
@@ -68,6 +84,10 @@ describe TimeTrap do
   end
 
   context "#each" do
+    it "is an enumerator" do
+      expect(ttrap.each).to be_an(Enumerator)
+    end
+
     it "allows block code to be run on each key" do
       (1..3).each {|i| ttrap.add("test_#{i}")}
       cnt = 0
@@ -77,6 +97,10 @@ describe TimeTrap do
   end
     
   context "#delete_if" do
+    it "is an enumerator" do
+      expect(ttrap.each).to be_an(Enumerator)
+    end
+
     it "allows block code to be run on each key" do
       (1..3).each {|i| ttrap.add("test_#{i}")}
       ttrap.delete_if {|key, val| key == "test_1"}
@@ -85,6 +109,10 @@ describe TimeTrap do
   end
     
   context "#sort_by" do
+    it "is an enumerator" do
+      expect(ttrap.each).to be_an(Enumerator)
+    end
+
     it "allows access to keys sorted by output of block code" do
       (0..0).each {|i| ttrap.add("1")}
       (0..1).each {|i| ttrap.add("2")}
@@ -97,12 +125,17 @@ describe TimeTrap do
   end
 
   context "#top" do
+    it "returns a TimeTrap" do
+      ttrap.add("test_1")
+      expect(ttrap.top(1)).to be_a(TimeTrap)
+    end
+
     it "gives you the top values sorted by code block" do
       (0..0).each {|i| ttrap.add("1")}
       (0..1).each {|i| ttrap.add("2")}
       (0..2).each {|i| ttrap.add("3")}
-      arr = ttrap.top(1)
-      expect(arr).to match_array(["3"]) 
+      expect(ttrap.top(1).count).to eq(1)
+      expect(ttrap.top(1).get("3")["3"].count).to eq(3)
     end
   end
 
